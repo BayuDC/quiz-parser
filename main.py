@@ -1,7 +1,7 @@
-from math import fabs
-from docx import Document
+import docx
+import yaml
 
-document = Document('./src/sample.docx')
+document = docx.Document('./src/sample.docx')
 
 quiz = {
     'name': '',
@@ -28,5 +28,5 @@ for p in document.paragraphs:
             'correct': correct
         })
 
-
-print(quiz)
+with open('./dist/sample.yaml', 'w') as file:
+    yaml.dump(quiz, file)
