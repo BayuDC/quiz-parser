@@ -1,3 +1,4 @@
+from math import fabs
 from docx import Document
 
 document = Document('./src/sample.docx')
@@ -16,8 +17,15 @@ for p in document.paragraphs:
             'choices': []
         })
     elif p.style.name == 'normal':
+        correct = False
+        for r in p.runs:
+            if r.bold == True:
+                correct = True
+                break
+
         quiz['questions'][-1]['choices'].append({
-            'body': p.text
+            'body': p.text,
+            'correct': correct
         })
 
 
